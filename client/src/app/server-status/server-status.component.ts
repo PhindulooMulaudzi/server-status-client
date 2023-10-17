@@ -46,7 +46,7 @@ export class ServerStatusComponent {
     'ipAddress',
     'environment',
     'status',
-    'action',
+    'ping',
   ];
   dataSource = SERVER_STATUS_DATA;
 

@@ -24,8 +24,8 @@
   </ng-container>
 
   <!-- Status Column -->
-  <ng-container matColumnDef="action">
-    <th mat-header-cell *matHeaderCellDef>Action</th>
+  <ng-container matColumnDef="ping">
+    <th mat-header-cell *matHeaderCellDef>Ping</th>
     <td mat-cell *matCellDef="let server">
       <button (click)="pingServer(server)">
         <mat-icon>sync_alt</mat-icon>
