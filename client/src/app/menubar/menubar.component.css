@@ -1,0 +1,19 @@
+/* CSS Reset */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.navbar {
+  border-radius: 15px 15px 0px 0px;
+  justify-content: space-between;
+}
+
+.navbar span {
+  padding-right: 1rem;
+  padding-left: 1rem;
+  border-right: 1px solid whitesmoke;
+  cursor: pointer;
+}
