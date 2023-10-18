@@ -2,20 +2,22 @@
 <mat-dialog-content>
   <form>
     <mat-form-field>
+      <mat-label>Server name</mat-label>
       <input
         matInput
         [(ngModel)]="data.serverName"
         name="serverName"
-        placeholder="Server Name"
+        placeholder="TRITON"
       />
     </mat-form-field>
 
     <mat-form-field>
+      <mat-label>IP Address</mat-label>
       <input
         matInput
         [(ngModel)]="data.ipAddress"
         name="ipAddress"
-        placeholder="IP Address"
+        placeholder="192.168.8.1"
       />
     </mat-form-field>
     <mat-form-field>
