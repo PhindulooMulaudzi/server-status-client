@@ -9,6 +9,7 @@ import { ServerStatusComponent } from './server-status/server-status.component';
 import { MaterialModule } from './material/material.module';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AddServerDialogComponent } from './add-server-dialog/add-server-dialog.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     DashboardComponent,
     MenubarComponent,
     ServerStatusComponent,
+    AddServerDialogComponent,
   ],
   imports: [
     BrowserModule,
