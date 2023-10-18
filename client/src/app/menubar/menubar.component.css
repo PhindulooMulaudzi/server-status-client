@@ -9,11 +9,20 @@
 .navbar {
   border-radius: 15px 15px 0px 0px;
   justify-content: space-between;
+  background-color: #1976d2;
+}
+
+.navbar div:first-child {
+  color: black;
 }
 
 .navbar span {
-  padding-right: 1rem;
-  padding-left: 1rem;
-  border-right: 1px solid whitesmoke;
+  padding: 0.5rem;
   cursor: pointer;
+  border-right: 1px solid whitesmoke;
+  transition: background-color 0.3s ease;
+}
+
+.navbar span:hover {
+  background-color: rgba(255, 255, 255, 0.1);
 }
