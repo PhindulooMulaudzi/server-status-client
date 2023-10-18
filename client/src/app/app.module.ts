@@ -7,7 +7,6 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { MenubarComponent } from './menubar/menubar.component';
 import { ServerStatusComponent } from './server-status/server-status.component';
 import { MaterialModule } from './material/material.module';
-import { AddServerComponent } from './add-server/add-server.component';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -17,7 +16,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     DashboardComponent,
     MenubarComponent,
     ServerStatusComponent,
-    AddServerComponent,
   ],
   imports: [
     BrowserModule,
