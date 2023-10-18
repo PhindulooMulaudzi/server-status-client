@@ -1,0 +1,30 @@
+/* Updated Table Styles */
+.mat-elevation-z8 {
+  width: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* Header Cell Styles */
+.mat-header-cell {
+  font-weight: bold;
+  text-align: left;
+}
+
+/* Cell Styles */
+.mat-cell {
+  text-align: left;
+}
+
+/* Button Styles */
+button {
+  padding: 0.5rem;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
