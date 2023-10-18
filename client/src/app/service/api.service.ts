@@ -28,7 +28,7 @@ export class ApiService {
     },
     {
       name: 'Profiles Server',
-      ipAddress: '192.168.8.4',
+      ipAddress: '162.159.36.12',
       environment: 'PRODUCTION',
       status: 'DOWN',
     },
