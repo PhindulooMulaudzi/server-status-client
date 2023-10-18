@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ApiService } from '../service/api.service';
 
 // Status payload
@@ -14,7 +14,7 @@ export interface ServerStatus {
   templateUrl: './server-status.component.html',
   styleUrls: ['./server-status.component.css'],
 })
-export class ServerStatusComponent implements OnInit {
+export class ServerStatusComponent implements OnInit, OnDestroy {
   dataSource!: ServerStatus[];
 
   displayedColumns: string[] = [
@@ -26,6 +26,7 @@ export class ServerStatusComponent implements OnInit {
   ];
 
   constructor(private apiService: ApiService) {}
+  ngOnDestroy(): void {}
 
   ngOnInit(): void {
     this.apiService.getAllServers().subscribe((data) => {
@@ -34,6 +35,13 @@ export class ServerStatusComponent implements OnInit {
   }
 
   pingServer(server: ServerStatus) {
-    console.log('Pinging: ' + server.ipAddress);
+    let idxOf = this.dataSource.indexOf(server);
+    let response = this.apiService.pingServer(server.ipAddress);
+    let status = response ? 'UP' : 'DOWN';
+    server.status = status;
+
+    if (idxOf) {
+      this.dataSource[idxOf] = server;
+    }
   }
 }

@@ -60,4 +60,8 @@ export class ApiService {
       alert('Failed to add new server...');
     }
   }
+
+  pingServer(ipAddress: string): Boolean {
+    return true;
+  }
 }
