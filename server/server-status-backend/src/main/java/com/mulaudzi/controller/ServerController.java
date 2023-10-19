@@ -40,6 +40,8 @@ public class ServerController {
 	
 	@GetMapping("/ping/{ipAddress}")
 	ResponseEntity<Response> pingServer(@PathVariable String ipAddress){
+		System.out.println("Ping request recieved for: " + ipAddress);
+		
         try {
 		InetAddress address = InetAddress.getByName(ipAddress);
         Boolean reachable = address.isReachable(10000);
@@ -47,7 +49,7 @@ public class ServerController {
 				.timeStamp(LocalDateTime.now())
 				.httpStatus(HttpStatus.OK)
 				.message("Ping attempt completed for: " + ipAddress)
-				.data(Map.of("result",reachable))
+				.data(Map.of("response",reachable))
 				.build());
         }catch(Exception e) {
     		return ResponseEntity.ok(Response.builder()

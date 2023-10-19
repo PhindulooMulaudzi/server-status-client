@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { map } from 'rxjs';
 import { ApiService } from '../service/api.service';
 
 // Status payload
@@ -36,9 +37,18 @@ export class ServerStatusComponent implements OnInit, OnDestroy {
 
   pingServer(server: ServerStatus) {
     let idxOf = this.dataSource.indexOf(server);
-    let response = this.apiService.pingServer(server.ipAddress);
+    let response = this.apiService.pingServer(server.ipAddress).pipe(
+      map((result) => {
+        console.log(result);
+        if (result.data && result.data['response'])
+          return result.data['response'];
+        return 'false';
+      })
+    );
     let status = response ? 'UP' : 'DOWN';
     server.status = status;
+
+    console.log(response);
 
     if (idxOf) {
       this.dataSource[idxOf] = server;

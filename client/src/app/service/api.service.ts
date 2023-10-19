@@ -43,13 +43,9 @@ export class ApiService {
     }
   }
 
-  pingServer(ipAddress: string): Boolean {
-    this.httpClient.get<CustomResponse>(
+  pingServer(ipAddress: string): Observable<CustomResponse> {
+    return this.httpClient.get<CustomResponse>(
       `${this.apiUrl}/api/v1/ping/${ipAddress}`
     );
-    let result = this.httpClient.get('').subscribe((data) => {
-      return data;
-    });
-    return true;
   }
 }
