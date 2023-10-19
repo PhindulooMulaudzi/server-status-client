@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { ServerInfo } from '../add-server-dialog/add-server-dialog.component';
 import { ServerStatus } from '../server-status/server-status.component';
 import { Observable, BehaviorSubject } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
@@ -38,7 +39,7 @@ export class ApiService {
     ServerStatus[]
   >(this.SERVER_STATUS_DATA);
 
-  constructor() {}
+  constructor(private httpClient: HttpClient) {}
 
   getAllServers(): Observable<ServerStatus[]> {
     return this.dataSourceSubject.asObservable();
@@ -62,6 +63,9 @@ export class ApiService {
   }
 
   pingServer(ipAddress: string): Boolean {
+    let result = this.httpClient.get('').subscribe((data) => {
+      return data;
+    });
     return true;
   }
 }
