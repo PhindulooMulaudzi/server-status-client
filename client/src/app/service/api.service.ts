@@ -11,10 +11,10 @@ import { CustomResponse } from './response';
 export class ApiService {
   serverStatusList: ServerStatus[] = [];
   constructor(private httpClient: HttpClient) {}
-
+  apiUrl: string = 'http://localhost:4201';
   getAllServers(): Observable<ServerStatus[]> {
     return this.httpClient
-      .get<CustomResponse>('http://localhost:4201/api/v1/servers')
+      .get<CustomResponse>(`${this.apiUrl}/api/v1/servers`)
       .pipe(
         catchError((error) => {
           console.log(error);
@@ -44,6 +44,9 @@ export class ApiService {
   }
 
   pingServer(ipAddress: string): Boolean {
+    this.httpClient.get<CustomResponse>(
+      `${this.apiUrl}/api/v1/ping/${ipAddress}`
+    );
     let result = this.httpClient.get('').subscribe((data) => {
       return data;
     });
