@@ -39,9 +39,7 @@ public class ServerController {
 	}
 	
 	@GetMapping("/ping/{ipAddress}")
-	ResponseEntity<Response> pingServer(@PathVariable String ipAddress){
-		System.out.println("Ping request recieved for: " + ipAddress);
-		
+	ResponseEntity<Response> pingServer(@PathVariable String ipAddress){	
         try {
 		InetAddress address = InetAddress.getByName(ipAddress);
         Boolean reachable = address.isReachable(10000);

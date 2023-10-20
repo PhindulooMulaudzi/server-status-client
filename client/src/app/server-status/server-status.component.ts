@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { map } from 'rxjs';
+import { catchError, map, switchMap, throwError } from 'rxjs';
 import { ApiService } from '../service/api.service';
 
 // Status payload
@@ -35,23 +35,29 @@ export class ServerStatusComponent implements OnInit, OnDestroy {
     });
   }
 
-  pingServer(server: ServerStatus) {
-    let idxOf = this.dataSource.indexOf(server);
-    let response = this.apiService.pingServer(server.ipAddress).pipe(
-      map((result) => {
-        console.log(result);
-        if (result.data && result.data['response'])
-          return result.data['response'];
-        return 'false';
-      })
-    );
-    let status = response ? 'UP' : 'DOWN';
-    server.status = status;
-
-    console.log(response);
-
-    if (idxOf) {
-      this.dataSource[idxOf] = server;
-    }
+  pingServer(serverStatus: ServerStatus) {
+    this.apiService
+      .pingServer(serverStatus.ipAddress)
+      .pipe(
+        catchError((error) => {
+          console.log('Got errir while trying to ping the server...');
+          return throwError(error);
+        }),
+        switchMap((result) => {
+          if (result && result.data && this.dataSource) {
+            const response = result.data['response'];
+            const idx = this.dataSource.indexOf(serverStatus);
+            const status = response ? 'UP' : 'DOWN';
+            this.dataSource[idx].status = status;
+          }
+          return [];
+        })
+      )
+      .subscribe(
+        () => {},
+        (error) => {
+          console.error('Error in subscription:', error);
+        }
+      );
   }
 }
